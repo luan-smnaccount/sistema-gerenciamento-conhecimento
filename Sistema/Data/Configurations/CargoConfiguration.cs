@@ -16,9 +16,11 @@ public class CargoConfiguration : IEntityTypeConfiguration<Cargo>
 
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Id)
+            .HasColumnType("smallint")
             .IsRequired();
-            
+
         builder.Property(c => c.Nome)
+            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }

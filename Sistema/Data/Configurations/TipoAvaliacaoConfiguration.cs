@@ -16,9 +16,11 @@ public class TipoAvaliacaoConfiguration : IEntityTypeConfiguration<TipoAvaliacao
 
         builder.HasKey(tpav => tpav.Id);
         builder.Property(tpav => tpav.Id)
+            .HasColumnType("tinyint")
             .IsRequired();
 
         builder.Property(tpav => tpav.Nome)
+            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }

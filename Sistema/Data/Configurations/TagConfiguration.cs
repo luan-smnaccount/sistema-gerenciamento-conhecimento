@@ -16,9 +16,11 @@ public class TagConfiguration : IEntityTypeConfiguration<Tag>
 
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id)
+            .HasColumnType("smallint")
             .IsRequired();
-            
+
         builder.Property(t => t.Nome)
+            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }

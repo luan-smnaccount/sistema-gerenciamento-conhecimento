@@ -16,9 +16,11 @@ public class StatusUsuarioConfigure : IEntityTypeConfiguration<StatusUsuario>
 
         builder.HasKey(su => su.Id);
         builder.Property(su => su.Id)
+            .HasColumnType("tinyint")
             .IsRequired();
 
         builder.Property(su => su.Status)
+            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }
