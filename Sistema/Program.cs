@@ -14,7 +14,9 @@ builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddScoped<ITipoPermissao, TipoPermissaoService>();
+builder.Services.AddScoped<ICargo, CargoServices>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
