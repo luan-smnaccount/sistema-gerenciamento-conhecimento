@@ -9,15 +9,15 @@ using Sistema.Models;
 namespace Sistema.Controllers;
 
 [ApiController]
-[Route("api/")]
+[Route("api/tipoPermissao")]
 
 public class TipoPermissaoController : ControllerBase
 {
-    private readonly ITipoPermissao _service;
+    private readonly ITipoPermissao _tipoPermissaoService;
 
-    public TipoPermissaoController(ITipoPermissao service)
+    public TipoPermissaoController(ITipoPermissao tipoPermissaoService)
     {
-        _service = service;
+        _tipoPermissaoService = tipoPermissaoService;
     }
 
     [HttpPost]
@@ -27,7 +27,7 @@ public class TipoPermissaoController : ControllerBase
 
         try
         {
-            await _service.ICriacaoTipoPermissao(tipoPermissao);
+            await _tipoPermissaoService.ICriacaoTipoPermissao(tipoPermissao);
             return StatusCode(200, new
             {
                 Sucesso = true,
@@ -41,7 +41,7 @@ public class TipoPermissaoController : ControllerBase
             {
                 Sucesso = false,
                 Menssagem = "Erro ao cadastrar tipo permissao",
-                Detalhe = ex.Message
+                Detalhes = ex.Message
             });
         }
     }
