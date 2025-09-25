@@ -29,8 +29,8 @@ public class TipoPermissaoService : ITipoPermissao
         }
         catch (Exception ex)
         {
-            var detalhes = ex.InnerException?.Message ?? ex.Message;
-            throw new Exception(detalhes, ex);
+            var detalhesErros = ex.InnerException?.Message ?? ex.Message;
+            throw new Exception(detalhesErros, ex);
         }
     }
 }
