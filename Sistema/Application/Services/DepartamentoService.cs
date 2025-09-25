@@ -8,20 +8,21 @@ using Sistema.Models;
 
 namespace Sistema.Application.Services;
 
-public class TipoPermissaoService : ITipoPermissao
+public class DepartamentoService : IDepartamento
 {
     private readonly AppDbContext _db;
 
-    public TipoPermissaoService(AppDbContext db)
+    public DepartamentoService(AppDbContext db)
     {
         _db = db;
     }
 
-    public async Task<TipoPermissao> ICriacaoTipoPermissao(TipoPermissao entity)
+    public async Task<Departamento> ICriacaoDepartamento(Departamento entity)
     {
         if (entity == null) throw new ArgumentException(nameof(entity));
 
-        await _db.TipoPermissao.AddAsync(entity);
+        await _db.Departamento.AddAsync(entity);
+
         try
         {
             await _db.SaveChangesAsync();

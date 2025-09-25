@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ITipoPermissao, TipoPermissaoService>();
 builder.Services.AddScoped<ICargo, CargoServices>();
+builder.Services.AddScoped<IDepartamento, DepartamentoService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
