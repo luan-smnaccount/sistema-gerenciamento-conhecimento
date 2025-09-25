@@ -16,8 +16,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
 
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Id)
-            .HasColumnType("int")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(u => u.IdCargo)
             .WithMany()
@@ -44,42 +43,22 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .IsRequired();
 
         builder.Property(u => u.Nome)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
 
         builder.Property(u => u.Email)
-            .HasColumnType("varchar")
             .HasMaxLength(100)
             .IsRequired();
 
         builder.Property(u => u.Senha)
-            .HasColumnType("varchar")
             .HasMaxLength(60)
             .IsRequired();
 
         builder.Property(u => u.DataCriacao)
-            .HasColumnType("data")
             .IsRequired();
 
         builder.Property(u => u.DataAtualizacao)
-            .HasColumnType("date")
             .IsRequired();
-
-        builder.HasMany(u => u.HistoricoVersao)
-            .WithOne(hv => hv.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(u => u.Comentario)
-            .WithOne(c => c.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(u => u.UsuarioAvaliacao)
-            .WithOne(ua => ua.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

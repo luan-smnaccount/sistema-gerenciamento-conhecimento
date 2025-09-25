@@ -16,11 +16,9 @@ public class DepartamentoConfiguration : IEntityTypeConfiguration<Departamento>
 
         builder.HasKey(d => d.Id);
         builder.Property(d => d.Id)
-            .HasColumnType("smallint")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.Property(d => d.Nome)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }

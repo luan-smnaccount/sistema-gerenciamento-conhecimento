@@ -16,11 +16,9 @@ public class TipoPermissaoConfiguration : IEntityTypeConfiguration<TipoPermissao
 
         builder.HasKey(tp => tp.Id);
         builder.Property(tp => tp.Id)
-            .HasColumnType("tinyint")
             .ValueGeneratedOnAdd();
 
         builder.Property(tp => tp.Nome)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }

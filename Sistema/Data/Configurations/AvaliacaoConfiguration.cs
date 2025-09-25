@@ -16,14 +16,7 @@ public class AvaliacaoConfiguration : IEntityTypeConfiguration<Avaliacao>
 
         builder.HasKey(a => a.Id);
         builder.Property(a => a.Id)
-            .HasColumnType("int")
-            .IsRequired();
-
-        builder.HasOne(a => a.IdUsuarioAvaliacao)
-            .WithMany()
-            .HasForeignKey("IdUsuarioAvaliacao")
-            .OnDelete(DeleteBehavior.Restrict)
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(a => a.IdTipoAvaliacao)
             .WithMany()

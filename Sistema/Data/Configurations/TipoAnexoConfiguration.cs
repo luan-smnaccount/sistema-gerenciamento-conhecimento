@@ -16,11 +16,9 @@ public class TipoAnexoConfiguration : IEntityTypeConfiguration<TipoAnexo>
 
         builder.HasKey(tpa => tpa.Id);
         builder.Property(tpa => tpa.Id)
-            .HasColumnType("tinyint")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.Property(tpa => tpa.NomeTipoAnexo)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }
