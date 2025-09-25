@@ -17,7 +17,7 @@ public class TipoPermissaoService : ITipoPermissao
         _db = db;
     }
 
-    public async Task<TipoPermissao> CreateTipoPermissaoAsync(TipoPermissao entity)
+    public async Task<TipoPermissao> ICriacaoTipoPermissao(TipoPermissao entity)
     {
         if (entity == null) throw new ArgumentException(nameof(entity));
         entity.Id = 0;
