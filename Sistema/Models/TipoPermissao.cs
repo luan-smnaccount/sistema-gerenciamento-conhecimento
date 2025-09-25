@@ -10,7 +10,6 @@ public class TipoPermissao
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public byte Id { get; set; }
-    public Usuario IdUsuario { get; set; }
     public string Nome { get; set; }
 
     public IEnumerable<Usuario> Usuario { get; set; }

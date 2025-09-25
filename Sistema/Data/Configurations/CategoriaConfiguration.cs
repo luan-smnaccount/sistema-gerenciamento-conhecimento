@@ -16,16 +16,13 @@ public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
 
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Id)
-            .HasColumnType("smallint")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.Property(c => c.Nome)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
 
         builder.Property(c => c.Descricao)
-            .HasColumnType("varchar")
             .HasMaxLength(100);
     }
 }

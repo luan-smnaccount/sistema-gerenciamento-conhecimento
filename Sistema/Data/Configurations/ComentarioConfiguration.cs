@@ -16,8 +16,7 @@ public class ComentarioConfiguration : IEntityTypeConfiguration<Comentario>
 
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Id)
-            .HasColumnType("int")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(c => c.IdConteudo)
             .WithMany()
@@ -32,7 +31,6 @@ public class ComentarioConfiguration : IEntityTypeConfiguration<Comentario>
             .IsRequired();
 
         builder.Property(c => c.Mensagem)
-            .HasColumnType("varchar")
             .HasMaxLength(100)
             .IsRequired();
     }

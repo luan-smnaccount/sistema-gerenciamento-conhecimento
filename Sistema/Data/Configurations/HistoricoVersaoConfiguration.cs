@@ -13,11 +13,10 @@ public class HistoricoVersaoConfiguration : IEntityTypeConfiguration<HistoricoVe
     public void Configure(EntityTypeBuilder<HistoricoVersao> builder)
     {
         builder.ToTable(nameof(HistoricoVersao));
-        
+
         builder.HasKey(hv => hv.Id);
         builder.Property(hv => hv.Id)
-            .HasColumnType("int")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(hv => hv.IdConteudo)
             .WithMany()
@@ -32,11 +31,9 @@ public class HistoricoVersaoConfiguration : IEntityTypeConfiguration<HistoricoVe
             .IsRequired();
 
         builder.Property(hv => hv.DescricaoVersao)
-            .HasColumnType("varchar")
             .HasMaxLength(255);
 
         builder.Property(hv => hv.DataVersao)
-            .HasColumnType("datetime")
             .IsRequired();
     }
 }

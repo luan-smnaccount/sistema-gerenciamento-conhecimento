@@ -28,6 +28,6 @@ public class AppDbContext : DbContext
     // public DbSet<Tag> Tag { get; set; }
     // public DbSet<TipoAnexo> TipoAnexo { get; set; }
 
-    // //public DbSet<Avaliacao> Avaliacao { get; set; }
+    // public DbSet<Avaliacao> Avaliacao { get; set; }
     // public DbSet<TipoAvaliacao> TipoAvaliacao { get; set; }
 }

@@ -16,11 +16,9 @@ public class TipoConteudoConfiguration : IEntityTypeConfiguration<TipoConteudo>
 
         builder.HasKey(tc => tc.Id);
         builder.Property(tc => tc.Id)
-            .HasColumnType("tinyint")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.Property(tc => tc.Nome)
-            .HasColumnType("varchar")
             .HasMaxLength(50)
             .IsRequired();
     }
