@@ -59,21 +59,6 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
 
         builder.Property(u => u.DataAtualizacao)
             .IsRequired();
-
-        builder.HasMany(u => u.HistoricoVersao)
-            .WithOne(hv => hv.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(u => u.Comentario)
-            .WithOne(c => c.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(u => u.UsuarioAvaliacao)
-            .WithOne(ua => ua.IdUsuario)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

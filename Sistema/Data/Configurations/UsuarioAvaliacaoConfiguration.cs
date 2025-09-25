@@ -14,17 +14,15 @@ public class UsuarioAvaliacaoConfiguration : IEntityTypeConfiguration<UsuarioAva
     {
         builder.ToTable(nameof(UsuarioAvaliacao));
 
-        builder.HasKey(ua => new { ua.IdUsuario, ua.IdAvaliacao });
+        builder.HasOne(ua => ua.Usuario)
+                .WithMany(u => u.UsuarioAvaliacao)
+                .HasForeignKey(ua => ua.IdUsuario)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
-        builder.HasOne(ua => ua.IdUsuario)
-            .WithMany(u => u.UsuarioAvaliacao)
-            .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict)
-            .IsRequired();
-
-        builder.HasOne(ua => ua.IdAvaliacao)
+        builder.HasOne(ua => ua.Avaliacao)
             .WithMany(a => a.UsuarioAvaliacao)
-            .HasForeignKey("IdAvaliacao")
+            .HasForeignKey(ua => ua.IdAvaliacao)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
     }
