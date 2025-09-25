@@ -20,7 +20,6 @@ public class TipoPermissaoService : ITipoPermissao
     public async Task<TipoPermissao> ICriacaoTipoPermissao(TipoPermissao entity)
     {
         if (entity == null) throw new ArgumentException(nameof(entity));
-        entity.Id = 0;
 
         await _db.TipoPermissao.AddAsync(entity);
         try
@@ -30,8 +29,8 @@ public class TipoPermissaoService : ITipoPermissao
         }
         catch (Exception ex)
         {
-            var detail = ex.InnerException?.Message ?? ex.Message;
-            throw new Exception(detail, ex);
+            var detalhes = ex.InnerException?.Message ?? ex.Message;
+            throw new Exception(detalhes, ex);
         }
     }
 }
