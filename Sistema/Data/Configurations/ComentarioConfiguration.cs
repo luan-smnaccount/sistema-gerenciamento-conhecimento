@@ -18,11 +18,11 @@ public class ComentarioConfiguration : IEntityTypeConfiguration<Comentario>
         builder.Property(c => c.Id)
             .ValueGeneratedOnAdd();
 
-        builder.HasOne(c => c.IdConteudo)
-            .WithMany()
-            .HasForeignKey("IdConteudo")
-            .OnDelete(DeleteBehavior.Restrict)
-            .IsRequired();
+        // builder.HasOne(c => c.IdConteudo)
+        //     .WithMany()
+        //     .HasForeignKey("IdConteudo")
+        //     .OnDelete(DeleteBehavior.Restrict)
+        //     .IsRequired();
 
         builder.HasOne(c => c.IdUsuario)
             .WithMany()

@@ -18,11 +18,11 @@ public class HistoricoVersaoConfiguration : IEntityTypeConfiguration<HistoricoVe
         builder.Property(hv => hv.Id)
             .ValueGeneratedOnAdd();
 
-        builder.HasOne(hv => hv.IdConteudo)
-            .WithMany()
-            .HasForeignKey("IdConteudo")
-            .OnDelete(DeleteBehavior.Restrict)
-            .IsRequired();
+        // builder.HasOne(hv => hv.IdConteudo)
+        //     .WithMany()
+        //     .HasForeignKey("IdConteudo")
+        //     .OnDelete(DeleteBehavior.Restrict)
+        //     .IsRequired();
 
         builder.HasOne(hv => hv.IdUsuario)
             .WithMany()

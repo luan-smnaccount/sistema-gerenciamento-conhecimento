@@ -16,6 +16,6 @@ public class Avaliacao
     public DateOnly DataAtualizacao { get; set; }
 
     public IEnumerable<UsuarioAvaliacao> UsuarioAvaliacao { get; set; }
-    public IEnumerable<ConteudoAvaliacao> ConteudoAvaliacao { get; set; }
+    // public IEnumerable<ConteudoAvaliacao> ConteudoAvaliacao { get; set; }
 }
 

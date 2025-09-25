@@ -10,7 +10,7 @@ public class HistoricoVersao
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    public Conteudo IdConteudo { get; set; }
+    // public Conteudo IdConteudo { get; set; }
     public Usuario IdUsuario { get; set; }
     public string DescricaoVersao { get; set; }
     public DateTime DataVersao { get; set; }
