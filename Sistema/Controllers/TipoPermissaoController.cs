@@ -27,7 +27,7 @@ public class TipoPermissaoController : ControllerBase
 
         try
         {
-            await _service.CreateTipoPermissaoAsync(tipoPermissao);
+            await _service.ICriacaoTipoPermissao(tipoPermissao);
             return StatusCode(200, new
             {
                 Sucesso = true,

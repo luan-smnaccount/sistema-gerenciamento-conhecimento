@@ -8,6 +8,6 @@ namespace Sistema.Application.Interfaces;
 
 public interface ITipoPermissao
 {
-    Task<TipoPermissao> CreateTipoPermissaoAsync(TipoPermissao entity);
+    Task<TipoPermissao> ICriacaoTipoPermissao(TipoPermissao entity);
 }
 
