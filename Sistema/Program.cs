@@ -47,4 +47,8 @@ using (var scope = app.Services.CreateScope())
     operacoesConsole.Menu();
 }
 
+Console.WriteLine("");
+Console.WriteLine("\n === Iniciando API === ");
+Thread.Sleep(2000);
+
 app.Run();
