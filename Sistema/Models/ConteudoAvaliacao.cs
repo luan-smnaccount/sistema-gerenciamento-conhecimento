@@ -7,6 +7,5 @@ namespace Sistema.Models;
 
 public class ConteudoAvaliacao
 {
-
+    // AINDA VAZIA PARA CONCLUIR TESTES COM OUTRAS CLASSES
 }
-

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -16,32 +17,25 @@ public class AvaliacaoConfiguration : IEntityTypeConfiguration<Avaliacao>
 
         builder.HasKey(a => a.Id);
         builder.Property(a => a.Id)
-            .HasColumnType("int")
-            .IsRequired();
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(a => a.IdUsuarioAvaliacao)
             .WithMany()
             .HasForeignKey("IdUsuarioAvaliacao")
-            .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
         builder.HasOne(a => a.IdTipoAvaliacao)
             .WithMany()
             .HasForeignKey("IdTipoAvaliacao")
-            .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
         builder.Property(a => a.NotaFinal)
-            .HasColumnType("int")
             .IsRequired();
 
         builder.Property(a => a.DataAvaliacao)
-            .HasColumnType("date")
             .IsRequired();
 
-        builder.Property(a => a.DataAtualizacao)
-            .HasColumnType("date")
-            .IsRequired();
+        builder.Property(a => a.DataAtualizacao);
     }
 }
 

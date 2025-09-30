@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Sistema.Models;
 
 public class Usuario
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public Cargo IdCargo { get; set; }
     public Departamento IdDepartamento { get; set; }
@@ -18,10 +20,6 @@ public class Usuario
     public string Senha { get; set; }
     public DateOnly DataCriacao { get; set; }
     public DateOnly DataAtualizacao { get; set; }
-
-    public HistoricoVersao IdHistoricoVersao { get; set; }
-    public Comentario IdComentario { get; set; }
-    public UsuarioAvaliacao IdUsuarioAvaliacao { get; set; }
 
     public IEnumerable<HistoricoVersao> HistoricoVersao { get; set; }
     public IEnumerable<Comentario> Comentario { get; set; }

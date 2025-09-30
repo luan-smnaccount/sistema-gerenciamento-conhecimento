@@ -7,5 +7,5 @@ namespace Sistema.Models;
 
 public class Conteudo
 {
-
+    // AINDA VAZIA PARA CONCLUIR TESTES COM OUTRAS CLASSES
 }

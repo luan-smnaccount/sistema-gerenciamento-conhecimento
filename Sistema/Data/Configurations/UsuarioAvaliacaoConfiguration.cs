@@ -19,13 +19,11 @@ public class UsuarioAvaliacaoConfiguration : IEntityTypeConfiguration<UsuarioAva
         builder.HasOne(ua => ua.IdUsuario)
             .WithMany(u => u.UsuarioAvaliacao)
             .HasForeignKey("IdUsuario")
-            .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
         builder.HasOne(ua => ua.IdAvaliacao)
             .WithMany(a => a.UsuarioAvaliacao)
             .HasForeignKey("IdAvaliacao")
-            .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
     }
 }

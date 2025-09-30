@@ -125,7 +125,7 @@ CREATE TABLE TipoAvaliacao(
 CREATE TABLE Avaliacao(
     Id INT NOT NULL IDENTITY PRIMARY KEY,
     IdTipoAvaliacao TINYINT NOT NULL,
-    NotaFinal INT NOT NULL,
+    NotaFinal DECIMAL NOT NULL,
     DataAvaliacao DATE NOT NULL,
     DataAtualizacao DATE NOT NULL,
     FOREIGN KEY (IdTipoAvaliacao) REFERENCES TipoAvaliacao(Id)
