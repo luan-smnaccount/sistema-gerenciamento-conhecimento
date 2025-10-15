@@ -1,42 +1,37 @@
-CREATE DATABASE db_SistemaGerenciamentoConhecimento
-GO 
-USE db_SistemaGerenciamentoConhecimento
-GO 
-
 CREATE TABLE UsuarioStatus (
-    IdUsuarioStatus TINYINT NOT NULL IDENTITY PRIMARY KEY,
+    Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Perfil (
-    IdPerfil SMALLINT NOT NULL IDENTITY PRIMARY KEY,
-    Perfil VARCHAR(50) NOT NULL,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME
 );
 
 CREATE TABLE Cargo (
-    IdCargo SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME
 );
 
 CREATE TABLE Departamento (
-    IdDepartamento SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME
 );
 
 CREATE TABLE Usuario (
-    IdUsuario INT NOT NULL IDENTITY PRIMARY KEY,
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
     IdUsuarioStatus TINYINT NOT NULL,
     IdPerfil SMALLINT NOT NULL,
     IdCargo SMALLINT NOT NULL,
@@ -44,149 +39,178 @@ CREATE TABLE Usuario (
     NomeCompleto VARCHAR(120) NOT NULL,
     Email VARCHAR(320) NOT NULL,
     Senha VARCHAR(60) NOT NULL,
-    CPF VARCHAR(11) NOT NULL,
+    CPF CHAR(13) NOT NULL,
     CEP CHAR(8) NOT NULL,
     Rua VARCHAR(50) NOT NULL,
     Cidade VARCHAR(50) NOT NULL,
-    Estado CHAR(2) NOT NULL,
+    UF CHAR(2) NOT NULL,
     NumResidencia VARCHAR(5) NOT NULL,
-    Telefone SMALLINT NOT NULL,
+    Telefone VARCHAR(11) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
     UsuarioAdmissao INT NOT NULL,
     DataAdmissao DATETIME NOT NULL,
-    FOREIGN KEY (IdUsuarioStatus) REFERENCES UsuarioStatus(IdUsuarioStatus),
-    FOREIGN KEY (IdPerfil) REFERENCES Perfil(IdPerfil),
-    FOREIGN KEY (IdCargo) REFERENCES Cargo(IdCargo),
-    FOREIGN KEY (IdDepartamento) REFERENCES Departamento(IdDepartamento)
-);
-
-CREATE TABLE HistoricoVersao (
-    IdHistoricoVersao INT NOT NULL IDENTITY PRIMARY KEY,
-    IdUsuario INT NOT NULL,
-    DescricaoVersao VARCHAR(255) NULL,
-    UsuarioCadastro INT NOT NULL,
-    DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL,
-    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+    FOREIGN KEY (IdUsuarioStatus) REFERENCES UsuarioStatus(Id),
+    FOREIGN KEY (IdPerfil) REFERENCES Perfil(Id),
+    FOREIGN KEY (IdCargo) REFERENCES Cargo(Id),
+    FOREIGN KEY (IdDepartamento) REFERENCES Departamento(Id)
 );
 
 CREATE TABLE TipoConteudo (
-    IdTipoConteudo TINYINT NOT NULL IDENTITY PRIMARY KEY,
+    Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Categoria (
-    IdCategoria SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL,
-    Descricao VARCHAR(120) NULL
+    Descricao VARCHAR(120)
 );
 
 CREATE TABLE Tag (
-    IdTag SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME
 );
 
 CREATE TABLE Conteudo (
-    IdConteudo INT NOT NULL IDENTITY PRIMARY KEY,
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
     IdTipoConteudo TINYINT NOT NULL,
-    IdHistoricoVersao INT NOT NULL,
     IdCategoria SMALLINT NOT NULL,
     IdTag SMALLINT NOT NULL,
     Conteudo TEXT NOT NULL,
-    Descricao VARCHAR(120) NULL,
-    LinkVideo VARCHAR(255) NULL,
+    Descricao VARCHAR(120),
+    LinkVideo VARCHAR(255),
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT NOT NULL,
     DataHoraAtualizacao DATETIME NOT NULL,
-    FOREIGN KEY (IdTipoConteudo) REFERENCES TipoConteudo(IdTipoConteudo),
-    FOREIGN KEY (IdHistoricoVersao) REFERENCES HistoricoVersao(IdHistoricoVersao),
-    FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
-    FOREIGN KEY (IdTag) REFERENCES Tag(IdTag)
+    FOREIGN KEY (IdTipoConteudo) REFERENCES TipoConteudo(Id),
+    FOREIGN KEY (IdCategoria) REFERENCES Categoria(Id),
+    FOREIGN KEY (IdTag) REFERENCES Tag(Id)
+);
+
+CREATE TABLE HistoricoVersao (
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    IdUsuario INT NOT NULL,
+    IdConteudo INT NOT NULL,
+    DescricaoVersao VARCHAR(255),
+    UsuarioCadastro INT NOT NULL,
+    DataHoraCadastro DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id),
+    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(Id)
 );
 
 CREATE TABLE Comentario (
-    IdComentario INT NOT NULL IDENTITY PRIMARY KEY,
-    IdConteudo INT NOT NULL,
-    Comentario VARCHAR(120) NOT NULL,
-    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(IdConteudo)
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    Descricao VARCHAR(220) NOT NULL
 );
 
 CREATE TABLE TipoAnexo (
-    IdTipoAnexo TINYINT NOT NULL IDENTITY PRIMARY KEY,
+    Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Anexo (
-    IdAnexo INT NOT NULL IDENTITY PRIMARY KEY,
-    IdTipoAnexo INT NOT NULL,
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    IdTipoAnexo TINYINT NOT NULL,
     Nome VARCHAR(50) NOT NULL,
     CaminhoArquivo VARCHAR(300) NOT NULL,
-    FOREIGN KEY (IdTipoAnexo) REFERENCES TipoAnexo(IdTipoAnexo)
+    UsuarioCadastro INT NOT NULL,
+    DataHoraCadastro DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    FOREIGN KEY (IdTipoAnexo) REFERENCES TipoAnexo(Id)
 );
 
 CREATE TABLE TipoAvaliacao (
-    IdTipoAvaliacao TINYINT NOT NULL IDENTITY PRIMARY KEY,
+    Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Avaliacao (
-    IdAvaliacao INT NOT NULL IDENTITY PRIMARY KEY,
-    IdConteudo INT NOT NULL,
-    IdTipoAvaliacao INT NOT NULL,
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    IdTipoAvaliacao TINYINT NOT NULL,
+    IdUsuario INT NOT NULL,
     NotaFinal DECIMAL NOT NULL,
     DataAvaliacao DATE NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT NOT NULL,
-    DataHoraAtualizacao DATETIME NOT NULL,
-    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(IdConteudo),
-    FOREIGN KEY (IdTipoAvaliacao) REFERENCES TipoAvaliacao(IdTipoAvaliacao)
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    FOREIGN KEY (IdTipoAvaliacao) REFERENCES TipoAvaliacao(Id),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
 CREATE TABLE OpcaoSistema (
-    IdOpcao INT NOT NULL IDENTITY PRIMARY KEY,
-    IdOpcaoSistema INT NULL,
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    IdOpcaoSistema INT,
     DescricaoOpcao VARCHAR(120) NOT NULL,
     Rota VARCHAR(80) NOT NULL,
-    FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(IdOpcao)
+    FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(Id)
 );
 
 CREATE TABLE Permissao (
-    IdPermissao SMALLINT NOT NULL IDENTITY PRIMARY KEY,
+    Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
     Permissao VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE PerfilOpcaoSistemaPermissao (
     IdPerfil SMALLINT NOT NULL,
     IdOpcaoSistema INT NOT NULL,
-    IdPermissao INT NOT NULL,
+    IdPermissao SMALLINT NOT NULL,
     PRIMARY KEY (IdPerfil, IdOpcaoSistema, IdPermissao),
-    FOREIGN KEY (IdPerfil) REFERENCES Perfil(IdPerfil),
-    FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(IdOpcao),
-    FOREIGN KEY (IdPermissao) REFERENCES Permissao(IdPermissao)
-);
-
-CREATE TABLE UsuarioComentario (
-    IdUsuario INT NOT NULL,
-    IdComentario INT NOT NULL,
-    PRIMARY KEY (IdUsuario, IdComentario),
-    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
-    FOREIGN KEY (IdComentario) REFERENCES Comentario(IdComentario)
+    FOREIGN KEY (IdPerfil) REFERENCES Perfil(Id),
+    FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(Id),
+    FOREIGN KEY (IdPermissao) REFERENCES Permissao(Id)
 );
 
 CREATE TABLE ConteudoAnexo (
     IdConteudo INT NOT NULL,
     IdAnexo INT NOT NULL,
     PRIMARY KEY (IdConteudo, IdAnexo),
-    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(IdConteudo),
-    FOREIGN KEY (IdAnexo) REFERENCES Anexo(IdAnexo)
+    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(Id),
+    FOREIGN KEY (IdAnexo) REFERENCES Anexo(Id)
+);
+
+CREATE TABLE UsuarioConteudoComentario (
+    IdUsuario INT NOT NULL,
+    IdComentario INT NOT NULL,
+    DataHoraCadastro DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    PRIMARY KEY (IdUsuario, IdComentario),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id),
+    FOREIGN KEY (IdComentario) REFERENCES Comentario(Id)
+);
+
+CREATE TABLE Modulo (
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    IdAvaliacao INT NOT NULL,
+    IdModulo INT,
+    Nome VARCHAR(50) NOT NULL,
+    UsuarioCadastro INT NOT NULL,
+    DataHoraCadastro DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    FOREIGN KEY (IdAvaliacao) REFERENCES Avaliacao(Id),
+    FOREIGN KEY (IdModulo) REFERENCES Modulo(Id)
+);
+
+CREATE TABLE ModuloConteudo (
+    IdModulo INT NOT NULL,
+    IdConteudo INT NOT NULL,
+    DuracaoDias SMALLINT NOT NULL,
+    DataHoraInicio DATETIME NOT NULL,
+    DataHoraFim DATETIME,
+    PRIMARY KEY (IdModulo, IdConteudo),
+    FOREIGN KEY (IdModulo) REFERENCES Modulo(Id),
+    FOREIGN KEY (IdConteudo) REFERENCES Conteudo(Id)
 );
