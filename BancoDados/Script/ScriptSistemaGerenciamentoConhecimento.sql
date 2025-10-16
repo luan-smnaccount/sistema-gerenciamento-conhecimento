@@ -5,11 +5,7 @@ CREATE TABLE UsuarioStatus (
 
 CREATE TABLE Perfil (
     Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
-    Nome VARCHAR(50) NOT NULL,
-    UsuarioCadastro INT NOT NULL,
-    DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT,
-    DataHoraAtualizacao DATETIME
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Cargo (
@@ -39,7 +35,7 @@ CREATE TABLE Usuario (
     NomeCompleto VARCHAR(120) NOT NULL,
     Email VARCHAR(320) NOT NULL,
     Senha VARCHAR(60) NOT NULL,
-    CPF CHAR(13) NOT NULL,
+    CPF VARCHAR(15) NOT NULL,
     CEP CHAR(8) NOT NULL,
     Rua VARCHAR(50) NOT NULL,
     Cidade VARCHAR(50) NOT NULL,
@@ -50,8 +46,8 @@ CREATE TABLE Usuario (
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
-    UsuarioAdmissao INT NOT NULL,
-    DataAdmissao DATETIME NOT NULL,
+    DataAdmissao DATE NOT NULL,
+    DataDemissao DATE NOT NULL,
     FOREIGN KEY (IdUsuarioStatus) REFERENCES UsuarioStatus(Id),
     FOREIGN KEY (IdPerfil) REFERENCES Perfil(Id),
     FOREIGN KEY (IdCargo) REFERENCES Cargo(Id),
@@ -71,11 +67,7 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Tag (
     Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
-    Nome VARCHAR(50) NOT NULL,
-    UsuarioCadastro INT NOT NULL,
-    DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT,
-    DataHoraAtualizacao DATETIME
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Conteudo (
@@ -100,7 +92,6 @@ CREATE TABLE HistoricoVersao (
     IdUsuario INT NOT NULL,
     IdConteudo INT NOT NULL,
     DescricaoVersao VARCHAR(255),
-    UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
@@ -110,7 +101,12 @@ CREATE TABLE HistoricoVersao (
 
 CREATE TABLE Comentario (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    Descricao VARCHAR(220) NOT NULL
+    IdUsuario INT NOT NULL
+    Descricao VARCHAR(220) NOT NULL,
+    DataHoraCadastro DATETIME NOT NULL,
+    UsuarioAtualizacao INT,
+    DataHoraAtualizacao DATETIME,
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
 CREATE TABLE TipoAnexo (
@@ -141,7 +137,6 @@ CREATE TABLE Avaliacao (
     IdUsuario INT NOT NULL,
     NotaFinal DECIMAL NOT NULL,
     DataAvaliacao DATE NOT NULL,
-    UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
@@ -159,7 +154,7 @@ CREATE TABLE OpcaoSistema (
 
 CREATE TABLE Permissao (
     Id SMALLINT NOT NULL IDENTITY PRIMARY KEY,
-    Permissao VARCHAR(50) NOT NULL
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE PerfilOpcaoSistemaPermissao (
@@ -180,17 +175,6 @@ CREATE TABLE ConteudoAnexo (
     FOREIGN KEY (IdAnexo) REFERENCES Anexo(Id)
 );
 
-CREATE TABLE UsuarioConteudoComentario (
-    IdUsuario INT NOT NULL,
-    IdComentario INT NOT NULL,
-    DataHoraCadastro DATETIME NOT NULL,
-    UsuarioAtualizacao INT,
-    DataHoraAtualizacao DATETIME,
-    PRIMARY KEY (IdUsuario, IdComentario),
-    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id),
-    FOREIGN KEY (IdComentario) REFERENCES Comentario(Id)
-);
-
 CREATE TABLE Modulo (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
     IdAvaliacao INT NOT NULL,
@@ -207,7 +191,6 @@ CREATE TABLE Modulo (
 CREATE TABLE ModuloConteudo (
     IdModulo INT NOT NULL,
     IdConteudo INT NOT NULL,
-    DuracaoDias SMALLINT NOT NULL,
     DataHoraInicio DATETIME NOT NULL,
     DataHoraFim DATETIME,
     PRIMARY KEY (IdModulo, IdConteudo),
