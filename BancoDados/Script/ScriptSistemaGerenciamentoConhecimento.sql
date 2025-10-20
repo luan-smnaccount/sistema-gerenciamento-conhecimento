@@ -1,3 +1,9 @@
+CREATE DATABASE db_sistemagestaoconhecimento
+GO
+
+USE db_sistemagestaoconhecimento
+GO
+
 CREATE TABLE UsuarioStatus (
     Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
@@ -101,7 +107,7 @@ CREATE TABLE HistoricoVersao (
 
 CREATE TABLE Comentario (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    IdUsuario INT NOT NULL
+    IdUsuario INT NOT NULL,
     Descricao VARCHAR(220) NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
