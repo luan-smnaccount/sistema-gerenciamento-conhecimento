@@ -153,8 +153,9 @@ CREATE TABLE Avaliacao (
 CREATE TABLE OpcaoSistema (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
     IdOpcaoSistema INT,
-    DescricaoOpcao VARCHAR(120) NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
     Rota VARCHAR(80) NOT NULL,
+    DescricaoOpcao VARCHAR(120) NOT NULL,
     FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(Id)
 );
 
