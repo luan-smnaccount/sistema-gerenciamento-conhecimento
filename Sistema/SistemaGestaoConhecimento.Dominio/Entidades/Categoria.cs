@@ -2,6 +2,7 @@
 
 namespace SistemaGestaoConhecimento.Dominio;
 
+[NotMapped]
 public class Categoria
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

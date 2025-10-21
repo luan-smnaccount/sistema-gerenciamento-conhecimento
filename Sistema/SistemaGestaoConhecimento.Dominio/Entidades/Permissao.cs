@@ -2,6 +2,7 @@
 
 namespace SistemaGestaoConhecimento.Dominio;
 
+[NotMapped]
 public class Permissao
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

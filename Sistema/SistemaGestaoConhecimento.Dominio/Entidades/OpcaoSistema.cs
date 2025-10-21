@@ -2,6 +2,7 @@
 
 namespace SistemaGestaoConhecimento.Dominio;
 
+[NotMapped]
 public class OpcaoSistema
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
