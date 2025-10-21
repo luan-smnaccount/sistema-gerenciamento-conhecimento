@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICargo, CargoService>();
+builder.Services.AddScoped<IDepartamento, DepartamentoService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
