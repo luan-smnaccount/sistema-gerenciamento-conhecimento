@@ -155,7 +155,7 @@ CREATE TABLE OpcaoSistema (
     IdOpcaoSistema INT,
     Nome VARCHAR(50) NOT NULL,
     Rota VARCHAR(80) NOT NULL,
-    DescricaoOpcao VARCHAR(120) NOT NULL,
+    DescricaoOpcao VARCHAR(120),
     FOREIGN KEY (IdOpcaoSistema) REFERENCES OpcaoSistema(Id)
 );
 
