@@ -16,6 +16,7 @@ public class DepartamentoService : IDepartamento
     {
         if (entity == null) throw new ArgumentException(nameof(entity));
 
+        entity.DataHoraCadastro = DateTime.Now;
         await _db.Departamento.AddAsync(entity);
 
         try

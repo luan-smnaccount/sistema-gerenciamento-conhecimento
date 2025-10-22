@@ -14,6 +14,7 @@ public class DepartamentoController : ControllerBase
         _Idepartamento = Idepartamento;
     }
 
+    [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] Departamento departamento)
     {
         if (departamento == null) return BadRequest("Departamento é nulo");
@@ -27,7 +28,7 @@ public class DepartamentoController : ControllerBase
                 Messagem = "Departamento criado com sucesso!"
             });
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(500, new
             {
