@@ -16,6 +16,7 @@ public class CargoService : ICargo
     {
         if (entity == null) throw new ArgumentException(nameof(entity));
 
+        entity.DataHoraCadastro = DateTime.Now;
         await _db.Cargo.AddAsync(entity);
 
         try
