@@ -53,7 +53,7 @@ CREATE TABLE Usuario (
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
     DataAdmissao DATE NOT NULL,
-    DataDemissao DATE NOT NULL,
+    DataDemissao DATE,
     FOREIGN KEY (IdUsuarioStatus) REFERENCES UsuarioStatus(Id),
     FOREIGN KEY (IdPerfil) REFERENCES Perfil(Id),
     FOREIGN KEY (IdCargo) REFERENCES Cargo(Id),
