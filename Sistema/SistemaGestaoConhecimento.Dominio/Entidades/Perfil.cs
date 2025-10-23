@@ -10,5 +10,5 @@ public class Perfil
     public string Nome { get; set; }
 
     public IEnumerable<PerfilOpcaoSistemaPermissao> PerfilOpcaoSistemaPermissao { get; set; }
-    public IEnumerable<Usuario> Usuario { get; set; }
+    public IEnumerable<Usuario> Usuarios { get; set; }
 }

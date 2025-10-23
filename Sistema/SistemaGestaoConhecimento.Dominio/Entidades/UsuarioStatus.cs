@@ -8,5 +8,5 @@ public class UsuarioStatus
     public byte Id { get; set; }
     public string Nome { get; set; }
 
-    public IEnumerable<Usuario> Usuario { get; set; }
+    public IEnumerable<Usuario> Usuarios { get; set; }
 }
