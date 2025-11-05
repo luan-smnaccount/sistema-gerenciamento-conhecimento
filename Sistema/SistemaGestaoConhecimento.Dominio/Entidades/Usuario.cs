@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using SistemaGestaoConhecimento.Dominio.Entidades;
 
 namespace SistemaGestaoConhecimento.Dominio;
 
@@ -35,4 +36,6 @@ public class Usuario
 
     [ForeignKey("IdDepartamento")]
     public Departamento Departamento { get; set; }
+
+    public IEnumerable<Comentario> Comentarios { get; set; }
 }
