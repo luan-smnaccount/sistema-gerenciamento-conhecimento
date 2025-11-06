@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaGestaoConhecimento.Dominio;
 using SistemaGestaoConhecimento.Infra;
+using SistemaGestaoConhecimento.Infra.Data.EntidadesConnection;
+using SistemaGestaoConhecimento.Infra.Data.InterfacesConnection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +15,14 @@ builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICargo>();
-builder.Services.AddScoped<IDepartamento>();
-builder.Services.AddScoped<IUsuario>();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
+
+builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var connection = serviceProvider.GetRequiredService<IConnection>();
+    var config = serviceProvider.GetRequiredService<IConfiguration>();
+    connection.ConfigureConnection(options, config);
 });
 
 var app = builder.Build();
