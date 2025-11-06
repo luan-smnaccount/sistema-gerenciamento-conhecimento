@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SistemaGestaoConhecimento.Api;
 using SistemaGestaoConhecimento.Dominio;
 using SistemaGestaoConhecimento.Infra;
+using SistemaGestaoConhecimento.Infra.Data.EntidadesConnection;
+using SistemaGestaoConhecimento.Infra.Data.InterfacesConnection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +18,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICargo, CargoService>();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
+
+builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    var connection = serviceProvider.GetRequiredService<IConnection>();
+    var config = serviceProvider.GetRequiredService<IConfiguration>();
+    connection.ConfigureConnection(options, config);
 });
 
 var app = builder.Build();
