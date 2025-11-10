@@ -9,8 +9,8 @@ public class Departamento
     public string Nome { get; set; }
     public int UsuarioCadastro { get; set; }
     public DateTime DataHoraCadastro { get; set; }
-    public int UsuarioAtualizacao { get; set; }
-    public DateTime DataHoraAtualizacao { get; set; }
+    public int? UsuarioAtualizacao { get; set; }
+    public DateTime? DataHoraAtualizacao { get; set; }
 
     public IEnumerable<Usuario> Usuario { get; set; }
 }
