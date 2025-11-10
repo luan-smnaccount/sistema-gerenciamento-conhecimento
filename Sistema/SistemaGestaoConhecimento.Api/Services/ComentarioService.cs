@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SistemaGestaoConhecimento.Dominio;
-using SistemaGestaoConhecimento.Dominio.Entidades;
-using SistemaGestaoConhecimento.Dominio.Interfaces;
 using SistemaGestaoConhecimento.Infra;
+using SistemaGestaoConhecimento.Dominio.Interfaces;
+using SistemaGestaoConhecimento.Dominio.Entidades;
 
 namespace SistemaGestaoConhecimento.Api.Services;
 
