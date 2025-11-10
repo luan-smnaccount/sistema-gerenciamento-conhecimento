@@ -6,10 +6,10 @@ public class Usuario
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    public UsuarioStatus IdUsuarioStatus { get; set; }
-    public Perfil IdPerfil { get; set; }
-    public Cargo IdCargo { get; set; }
-    public Departamento IdDepartamento { get; set; }
+    public byte IdUsuarioStatus { get; set; }
+    public short IdPerfil { get; set; }
+    public short IdCargo { get; set; }
+    public short IdDepartamento { get; set; }
     public string NomeCompleto { get; set; }
     public string Email { get; set; }
     public string Senha { get; set; }
@@ -21,9 +21,18 @@ public class Usuario
     public string NumResidencia { get; set; }
     public string Telefone { get; set; }
     public int UsuarioCadastro { get; set; }
-    public DateTime DataHoraCriacao { get; set; }
-    public int UsuarioAtualizacao { get; set; }
-    public DateTime DataHoraAtualizacao { get; set; }
+    public DateTime DataHoraCadastro { get; set; }
+    public int? UsuarioAtualizacao { get; set; }
+    public DateTime? DataHoraAtualizacao { get; set; }
     public DateOnly DataAdmissao { get; set; }
-    public DateOnly DataDemissao { get; set; }
+    public DateOnly? DataDemissao { get; set; }
+
+    public UsuarioStatus UsuarioStatus { get; set; }
+    public Perfil Perfil { get; set; }
+
+    [ForeignKey("IdCargo")]
+    public Cargo Cargo { get; set; }
+
+    [ForeignKey("IdDepartamento")]
+    public Departamento Departamento { get; set; }
 }

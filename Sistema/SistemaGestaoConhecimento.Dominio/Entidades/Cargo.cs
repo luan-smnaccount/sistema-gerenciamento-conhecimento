@@ -12,5 +12,5 @@ public class Cargo
     public int? UsuarioAtualizacao { get; set; }
     public DateTime? DataHoraAtualizacao { get; set; }
 
-    public IEnumerable<Usuario> Usuario { get; set; }
+    public IEnumerable<Usuario> Usuarios { get; set; }
 }

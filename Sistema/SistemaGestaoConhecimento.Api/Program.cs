@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICargo, CargoService>();
 builder.Services.AddScoped<IDepartamento, DepartamentoService>();
+builder.Services.AddScoped<IUsuario, UsuarioService>();
 
 builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
 
