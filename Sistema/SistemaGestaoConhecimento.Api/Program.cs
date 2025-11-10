@@ -1,7 +1,9 @@
 ﻿using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using SistemaGestaoConhecimento.Api;
+using SistemaGestaoConhecimento.Api.Services;
 using SistemaGestaoConhecimento.Dominio;
+using SistemaGestaoConhecimento.Dominio.Interfaces;
 using SistemaGestaoConhecimento.Infra;
 using SistemaGestaoConhecimento.Infra.Data.EntidadesConnection;
 using SistemaGestaoConhecimento.Infra.Data.InterfacesConnection;
@@ -19,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICargo, CargoService>();
 builder.Services.AddScoped<IDepartamento, DepartamentoService>();
 builder.Services.AddScoped<IUsuario, UsuarioService>();
+builder.Services.AddScoped<IComentario, ComentarioService>();
 
 builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
 
