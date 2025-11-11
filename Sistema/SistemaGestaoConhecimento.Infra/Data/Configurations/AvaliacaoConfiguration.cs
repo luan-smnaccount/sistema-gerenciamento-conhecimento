@@ -15,6 +15,8 @@ public class AvaliacaoConfiguration : IEntityTypeConfiguration<Avaliacao>
         builder.ToTable(nameof(Avaliacao));
 
         builder.HasKey(a => a.Id);
+        builder.Property(a => a.Id)
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(a => a.AvaliacaoTipo)
             .WithMany(at => at.Avaliacoes)
