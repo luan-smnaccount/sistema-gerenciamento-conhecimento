@@ -4,6 +4,7 @@ namespace SistemaGestaoConhecimento.Dominio.Entidades;
 
 public class Avaliacao
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public byte IdAvaliacaoTipo { get; set; }
     public int IdUsuario { get; set; }
@@ -18,4 +19,5 @@ public class Avaliacao
 
     [ForeignKey("IdUsuario")]
     public Usuario Usuario { get; set; }
+    public Modulo Modulo { get; set; }
 }
