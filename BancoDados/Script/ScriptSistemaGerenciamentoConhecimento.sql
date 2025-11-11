@@ -60,7 +60,7 @@ CREATE TABLE Usuario (
     FOREIGN KEY (IdDepartamento) REFERENCES Departamento(Id)
 );
 
-CREATE TABLE TipoConteudo (
+CREATE TABLE ConteudoTipo (
     Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
@@ -78,7 +78,7 @@ CREATE TABLE Tag (
 
 CREATE TABLE Conteudo (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    IdTipoConteudo TINYINT NOT NULL,
+    IdConteudoTipo TINYINT NOT NULL,
     IdCategoria SMALLINT NOT NULL,
     IdTag SMALLINT NOT NULL,
     Conteudo TEXT NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE Conteudo (
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT NOT NULL,
     DataHoraAtualizacao DATETIME NOT NULL,
-    FOREIGN KEY (IdTipoConteudo) REFERENCES TipoConteudo(Id),
+    FOREIGN KEY (IdConteudoTipo) REFERENCES ConteudoTipo(Id),
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(Id),
     FOREIGN KEY (IdTag) REFERENCES Tag(Id)
 );
@@ -115,38 +115,38 @@ CREATE TABLE Comentario (
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
-CREATE TABLE TipoAnexo (
+CREATE TABLE AnexoTipo (
     Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Anexo (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    IdTipoAnexo TINYINT NOT NULL,
+    IdAnexoTipo TINYINT NOT NULL,
     Nome VARCHAR(50) NOT NULL,
     CaminhoArquivo VARCHAR(300) NOT NULL,
     UsuarioCadastro INT NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
-    FOREIGN KEY (IdTipoAnexo) REFERENCES TipoAnexo(Id)
+    FOREIGN KEY (IdAnexoTipo) REFERENCES AnexoTipo(Id)
 );
 
-CREATE TABLE TipoAvaliacao (
+CREATE TABLE AvaliacaoTipo (
     Id TINYINT NOT NULL IDENTITY PRIMARY KEY,
     Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Avaliacao (
     Id INT NOT NULL IDENTITY PRIMARY KEY,
-    IdTipoAvaliacao TINYINT NOT NULL,
+    IdAvaliacaoTipo TINYINT NOT NULL,
     IdUsuario INT NOT NULL,
     NotaFinal DECIMAL NOT NULL,
     DataAvaliacao DATE NOT NULL,
     DataHoraCadastro DATETIME NOT NULL,
     UsuarioAtualizacao INT,
     DataHoraAtualizacao DATETIME,
-    FOREIGN KEY (IdTipoAvaliacao) REFERENCES TipoAvaliacao(Id),
+    FOREIGN KEY (IdAvaliacaoTipo) REFERENCES AvaliacaoTipo(Id),
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
