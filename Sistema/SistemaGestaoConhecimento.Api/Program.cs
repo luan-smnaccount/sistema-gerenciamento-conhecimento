@@ -22,6 +22,7 @@ builder.Services.AddScoped<IDepartamento, DepartamentoService>();
 builder.Services.AddScoped<IUsuario, UsuarioService>();
 builder.Services.AddScoped<IComentario, ComentarioService>();
 builder.Services.AddScoped<IAvaliacao, AvaliacaoService>();
+builder.Services.AddScoped<IModulo, ModuloService>();
 
 builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
 

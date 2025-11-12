@@ -19,4 +19,5 @@ public class Avaliacao
 
     [ForeignKey("IdUsuario")]
     public Usuario Usuario { get; set; }
+    public Modulo Modulo { get; set; }
 }
