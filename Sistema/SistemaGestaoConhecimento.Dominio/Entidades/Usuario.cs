@@ -37,5 +37,6 @@ public class Usuario
     [ForeignKey("IdDepartamento")]
     public Departamento Departamento { get; set; }
 
+    public IEnumerable<Avaliacao> Avaliacoes { get; set; }
     public IEnumerable<Comentario> Comentarios { get; set; }
 }

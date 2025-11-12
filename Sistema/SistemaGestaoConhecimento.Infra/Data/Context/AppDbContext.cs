@@ -13,4 +13,5 @@ public class AppDbContext : DbContext
     public DbSet<Departamento> Departamento { get; set; }
     public DbSet<Usuario> Usuario { get; set; }
     public DbSet<Comentario> Comentario { get; set; }
+    public DbSet<Avaliacao> Avaliacao { get; set; }
 }

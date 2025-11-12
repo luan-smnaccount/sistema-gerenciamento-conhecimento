@@ -1,5 +1,4 @@
 ﻿using DotNetEnv;
-using Microsoft.EntityFrameworkCore;
 using SistemaGestaoConhecimento.Api;
 using SistemaGestaoConhecimento.Api.Services;
 using SistemaGestaoConhecimento.Dominio;
@@ -22,6 +21,7 @@ builder.Services.AddScoped<ICargo, CargoService>();
 builder.Services.AddScoped<IDepartamento, DepartamentoService>();
 builder.Services.AddScoped<IUsuario, UsuarioService>();
 builder.Services.AddScoped<IComentario, ComentarioService>();
+builder.Services.AddScoped<IAvaliacao, AvaliacaoService>();
 
 builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
 
