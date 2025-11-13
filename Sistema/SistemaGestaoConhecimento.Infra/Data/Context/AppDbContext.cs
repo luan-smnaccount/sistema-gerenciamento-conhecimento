@@ -15,4 +15,5 @@ public class AppDbContext : DbContext
     public DbSet<Comentario> Comentario { get; set; }
     public DbSet<Avaliacao> Avaliacao { get; set; }
     public DbSet<Modulo> Modulo { get; set; }
+    public DbSet<Anexo> Anexo { get; set; }
 }
