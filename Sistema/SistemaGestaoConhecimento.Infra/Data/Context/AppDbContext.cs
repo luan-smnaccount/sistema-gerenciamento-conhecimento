@@ -16,4 +16,5 @@ public class AppDbContext : DbContext
     public DbSet<Avaliacao> Avaliacao { get; set; }
     public DbSet<Modulo> Modulo { get; set; }
     public DbSet<Anexo> Anexo { get; set; }
+    public DbSet<Conteudo> Conteudo { get; set; }
 }

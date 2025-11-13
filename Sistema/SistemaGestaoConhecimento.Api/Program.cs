@@ -24,6 +24,7 @@ builder.Services.AddScoped<IComentario, ComentarioService>();
 builder.Services.AddScoped<IAvaliacao, AvaliacaoService>();
 builder.Services.AddScoped<IModulo, ModuloService>();
 builder.Services.AddScoped<IAnexo, AnexoService>();
+builder.Services.AddScoped<IConteudo, ConteudoService>();
 
 builder.Services.AddScoped<IConnection, SqlServerDatabaseConnection>();
 
