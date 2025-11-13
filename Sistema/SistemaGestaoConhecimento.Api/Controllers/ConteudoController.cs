@@ -15,6 +15,7 @@ public class ConteudoController : ControllerBase
         _IConteudo = iConteudo;
     }
 
+    [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] Conteudo conteudo)
     {
         if (conteudo == null) return BadRequest("Conteudo é nulo");
